@@ -3,4 +3,4 @@ project(SoftwareEngineeringProject C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_library(SoftwareEngineeringProject library.c library.h)
+add_library(SoftwareEngineeringProject test.c)
