@@ -13,5 +13,24 @@
     All code will be commented to ensure everyone on the team can understand what is happening and ensure maintainability
     
 ## Due Dates
-    Design - Friday 11 October @ 23:59
-    Implementation - Friday 22 November @ 23:59
+    - [x] Design - Friday 11 October @ 23:59
+    - [ ] Implementation - Friday 22 November @ 23:59
+    
+## Files
+    - [x] README.me
+    - [x] DesignDocumentationV1.pdf
+    - [ ] DesignDocumentationV2.pdf 
+###### Sample I/O Files
+    - [ ] input.txt
+    - [x] tokenized.txt
+    - [x] postfixed.txt
+    - [x] codegenerated.txt
+    
+###### C Files
+    - [x] tokenizer.c
+    - [ ] infix2postfix.c
+    - [ ] codegenerator.c
+    - [ ] virtualmachine.c
+    
+###### Test Suite
+
