@@ -29,7 +29,7 @@
 ###### C Files
 - [x] tokenizer.c
 - [x] infix2postfix.c
-- [ ] codegenerator.c
+- [x] codegenerator.c
 - [ ] virtualmachine.c
     
 ###### Test Suite
