@@ -28,7 +28,7 @@
     
 ###### C Files
 - [x] tokenizer.c
-- [ ] infix2postfix.c
+- [x] infix2postfix.c
 - [ ] codegenerator.c
 - [ ] virtualmachine.c
     
