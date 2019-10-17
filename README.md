@@ -30,7 +30,7 @@
 - [x] tokenizer.c
 - [x] infix2postfix.c
 - [x] codegenerator.c
-- [ ] virtualmachine.c
+- [x] virtualmachine.c
     
 ###### Test Suite
 
