@@ -1,8 +1,0 @@
-LOADFLOAT 1.33
-LOADFLOAT 24.6            
-LOADINT 366
-LOADINT 21             
-MUL                 
-ADD                 
-DIV                 
-SUB                 
