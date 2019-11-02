@@ -52,7 +52,7 @@ These values can also be seen within the main, when creating.
 This function is vital to reset the structure after use, to ensure
 correctness. 
 */
-struct InputtedType reset_struct (struct InputtedType inputtedtype){
+struct InputtedType reset_inputtedtype_struct (struct InputtedType inputtedtype){
     for (int i = 0; i < inputtedtype.pointer; i++) {
         inputtedtype.content[i] = ' ';
     }
@@ -134,7 +134,7 @@ This is the 'main' function where the code is ran from.
    the Instruction to the file
    The output file is then closed
 */ 
-int main () {
+int startCodeGenerator () {
     // 1)
     FILE *outputFile;
     outputFile = fopen(_outputFile_, "w");
@@ -169,7 +169,7 @@ int main () {
             } else {
                 if (inputtedtype.pointer > 0) {
                     resultToFile(inputtedtype);
-                    inputtedtype = reset_struct(inputtedtype);
+                    inputtedtype = reset_inputtedtype_struct(inputtedtype);
                 }
             }
             // If the character ='*' meaning multiplication, type 2 is assigned
@@ -193,6 +193,13 @@ int main () {
             fclose(outputFile);                   
         }
     }
+
+#ifdef NOMAIN
+int main(){
+    return startCodeGenerator();
+}
+#endif
+
 /*
 Sample Input:
 

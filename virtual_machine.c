@@ -103,7 +103,7 @@ void processFile(FILE *fp, fstack *stack){
 
 // Read the INPUT_FILE line by line, executing each instruction line
 // Print the output of stack
-int main(){
+int startVirtualMachine(){
 
     // Initialize variables for reading the file
     FILE *fp = fopen(INPUT_FILE, "r");
@@ -115,5 +115,10 @@ int main(){
     printf("%.6g\n", pop(stack));
 
     free(stack);
-    return 0;
 }
+
+#ifdef NOMAIN
+int main(){
+    return startVirtualMachine();
+}
+#endif

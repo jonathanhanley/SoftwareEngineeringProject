@@ -32,7 +32,7 @@ void rest_output_files(){
 }
 
 //Function to reset the Output_type struct back to default
-struct Output_type reset_struct(struct Output_type outputType){
+struct Output_type reset_outputtype_struct(struct Output_type outputType){
     for (int i = 0; i < outputType.pointer; i++){
         outputType.content[i] = ' ';
     }
@@ -86,7 +86,7 @@ void write_item_to_file(struct Output_type outputType){
 }
 
 //main function
-int main(){
+int startTokenizer(){
     //reset the OUTPUT_FILE file
     rest_output_files();
 
@@ -128,7 +128,7 @@ int main(){
                 write_item_to_file(outputType);
 
                 //Reset outputType
-                outputType = reset_struct(outputType);
+                outputType = reset_outputtype_struct(outputType);
             }
         }
         //If the character is an operator
@@ -139,21 +139,21 @@ int main(){
             outputType.content[0] = (char) character;
             outputType.type = 2;
             write_item_to_file(outputType);
-            outputType = reset_struct(outputType);
+            outputType = reset_outputtype_struct(outputType);
         }
 
         else if(character == '('){
             outputType.content[0] = (char) character;
             outputType.type = 3;
             write_item_to_file(outputType);
-            outputType = reset_struct(outputType);
+            outputType = reset_outputtype_struct(outputType);
         }
 
         else if(character == ')'){
             outputType.content[0] = (char) character;
             outputType.type = 4;
             write_item_to_file(outputType);
-            outputType = reset_struct(outputType);
+            outputType = reset_outputtype_struct(outputType);
         }
         
 
@@ -161,3 +161,9 @@ int main(){
     }
     return 0;
 }
+
+#ifdef NOMAIN
+int main(){
+    return startTokenizer();
+}
+#endif
