@@ -15,6 +15,7 @@ Include & Define statement block
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 /* 
 defining the input & output files - ease of maintenance and 
 only have to change in one place should these files need to be 
@@ -39,11 +40,11 @@ set.
 Create a structure to hold the inputted characters 
 (Float, Int, Operator) from the file and store them in a struct
 */
-struct InputtedType {
+typedef struct _InputtedType {
     int pointer;
     int type;
     char content[50];
-};
+} InputtedType;
 
  /*
 Below is a function used to reset the above struct
@@ -52,13 +53,9 @@ These values can also be seen within the main, when creating.
 This function is vital to reset the structure after use, to ensure
 correctness. 
 */
-struct InputtedType reset_inputtedtype_struct (struct InputtedType inputtedtype){
-    for (int i = 0; i < inputtedtype.pointer; i++) {
-        inputtedtype.content[i] = ' ';
-    }
-    inputtedtype.type = 1;
-    inputtedtype.pointer = 0;
-    return inputtedtype;
+void reset_inputtedtype_struct (InputtedType *inputtedtype){
+    inputtedtype->type = 1;
+    inputtedtype->pointer = 0;
 }
  /*
 The keyToValue function below, takes a key, assigned to an INT, FLOAT
@@ -104,19 +101,20 @@ strcmp = string compare.
 The instriction is then written to the outputfile according to the formatting
 i have specified in the code (i.e.: one instruction per line)
 */
-void resultToFile( struct InputtedType inputtedtype) {
+void resultToFile(InputtedType *inputtedtype) {
     FILE *outputFile;
     outputFile = fopen(_outputFile_, "a");
-    int type = inputtedtype.type;
+    int type = inputtedtype->type;
     char *key = keyToValue(type);
     if (strcmp(key,floatinstr) || strcmp(key, intinstr)) {
-        inputtedtype.content[inputtedtype.pointer] = '\0';
-        fprintf(outputFile, "%s %s\n", key, inputtedtype.content);
+        inputtedtype->content[inputtedtype->pointer] = '\0';
+        fprintf(outputFile, "%s %s\n", key, inputtedtype->content);
     }else
     {
-        fprintf(outputFile, "%s %c\n", key, inputtedtype.content[0]);
+        fprintf(outputFile, "%s %c\n", key, inputtedtype->content[0]);
     }
     fclose(outputFile);
+    reset_inputtedtype_struct(inputtedtype);
 };
 
  /*
@@ -142,9 +140,8 @@ int startCodeGenerator () {
     fclose(outputFile);
 
     // 2
-    struct InputtedType inputtedtype ;
-    inputtedtype.pointer = 0;
-    inputtedtype.type = 1;
+    InputtedType *inputtedtype = (InputtedType *)malloc(sizeof(InputtedType));
+    reset_inputtedtype_struct(inputtedtype);
 
     // 3
     char lineread[100];
@@ -161,37 +158,33 @@ int startCodeGenerator () {
         // || - if isdigit(character) OR character == '.' is true
         // If one of them is true run the code following
         if (isdigit(character) || character == '.'){
-            inputtedtype.content[inputtedtype.pointer] = character;
-            inputtedtype.pointer ++;
+            inputtedtype->content[inputtedtype->pointer] = character;
+            inputtedtype->pointer ++;
             // if there is a '.' it is assigned a type of 0, corresponding to a float
             if (character == '.'){
-                inputtedtype.type = 0;
+                inputtedtype->type = 0;
             }
-            } else {
-                if (inputtedtype.pointer > 0) {
-                    resultToFile(inputtedtype);
-                    inputtedtype = reset_inputtedtype_struct(inputtedtype);
-                }
+        } else {
+            if (inputtedtype->pointer > 0) {
+                resultToFile(inputtedtype);
             }
-            // If the character ='*' meaning multiplication, type 2 is assigned
-            if (character == '*') 
-            {
-                inputtedtype.type = 2;
-                resultToFile(inputtedtype);
-            } else if (character == '/')
-            {
-                inputtedtype.type = 3;
-                resultToFile(inputtedtype);
-            } else if (character == '+')
-            {
-                inputtedtype.type = 4;
-                resultToFile(inputtedtype);
-            } else if (character == '-') {
-                inputtedtype.type = 5;
-                resultToFile(inputtedtype);
-            }                  
         }
+        // If the character ='*' meaning multiplication, type 2 is assigned
+        if (character == '*') {
+            inputtedtype->type = 2;
+            resultToFile(inputtedtype);
+        } else if (character == '/') {
+            inputtedtype->type = 3;
+            resultToFile(inputtedtype);
+        } else if (character == '+') {
+            inputtedtype->type = 4;
+            resultToFile(inputtedtype);
+        } else if (character == '-') {
+            inputtedtype->type = 5;
+            resultToFile(inputtedtype);
+        }                  
     }
+}
 
 #ifdef NOMAIN
 int main(){
