@@ -78,7 +78,7 @@ void write_item_to_file(struct Output_type outputType){
         printf("%s %s\n", key, outputType.content);
 
     } else {
-        printf("%d %s\n", outputType.type, outputType.content);
+        printf("%d %c\n", outputType.type, outputType.content[0]);
         fprintf(output, "%s %c\n", key, outputType.content[0]);
     }
 
@@ -86,7 +86,7 @@ void write_item_to_file(struct Output_type outputType){
 }
 
 //main function
-int main(){
+int startTokenizer(){
     //reset the OUTPUT_FILE file
     rest_output_files();
 
@@ -125,6 +125,7 @@ int main(){
             //If we have reached the end of the Integer / Float
             if (outputType.pointer > 0){
                 //Write the Output_type to file 
+                outputType.content[outputType.pointer] = '\0';
                 write_item_to_file(outputType);
 
                 //Reset outputType

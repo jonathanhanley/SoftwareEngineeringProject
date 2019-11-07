@@ -110,6 +110,7 @@ void resultToFile( struct InputtedType inputtedtype) {
     int type = inputtedtype.type;
     char *key = keyToValue(type);
     if (strcmp(key,floatinstr) || strcmp(key, intinstr)) {
+        inputtedtype.content[inputtedtype.pointer] = '\0';
         fprintf(outputFile, "%s %s\n", key, inputtedtype.content);
     }else
     {
@@ -188,9 +189,7 @@ int startCodeGenerator () {
             } else if (character == '-') {
                 inputtedtype.type = 5;
                 resultToFile(inputtedtype);
-            }
-            // Output file is then closed. 
-            fclose(outputFile);                   
+            }                  
         }
     }
 
