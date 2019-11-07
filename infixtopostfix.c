@@ -18,7 +18,7 @@ bool greaterPrecedence(char op1, char op2);
 bool equalPrecedence(char op1, char op2);
 
 // The main function of the program
-int startInfixToPostfix (int argc, char** argv) {
+int startInfixToPostfix () {
 
     // The stack for the operators being read in, that will be processed by the shunting yard algorithm
     char operatorStack[64];
