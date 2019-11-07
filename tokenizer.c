@@ -104,7 +104,7 @@ int startTokenizer(){
     outputType.type = 1;
 
     //Traverse though the line
-    for (int index = 0; index < len; index++) {
+    for (int index = 0; index <= len; index++) {
 
         //Read the character at the position [index]
         character = singleLine[index];
