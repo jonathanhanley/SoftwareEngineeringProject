@@ -32,7 +32,7 @@ void rest_output_files(){
 }
 
 //Function to reset the Output_type struct back to default
-struct Output_type reset_outputtype_struct(struct Output_type outputType){
+struct Output_type reset_struct(struct Output_type outputType){
     for (int i = 0; i < outputType.pointer; i++){
         outputType.content[i] = ' ';
     }
@@ -78,7 +78,7 @@ void write_item_to_file(struct Output_type outputType){
         printf("%s %s\n", key, outputType.content);
 
     } else {
-        printf("%d %c\n", outputType.type, outputType.content[0]);
+        printf("%d %s\n", outputType.type, outputType.content);
         fprintf(output, "%s %c\n", key, outputType.content[0]);
     }
 
@@ -86,7 +86,7 @@ void write_item_to_file(struct Output_type outputType){
 }
 
 //main function
-int startTokenizer(){
+int main(){
     //reset the OUTPUT_FILE file
     rest_output_files();
 
@@ -128,7 +128,7 @@ int startTokenizer(){
                 write_item_to_file(outputType);
 
                 //Reset outputType
-                outputType = reset_outputtype_struct(outputType);
+                outputType = reset_struct(outputType);
             }
         }
         //If the character is an operator
@@ -139,21 +139,21 @@ int startTokenizer(){
             outputType.content[0] = (char) character;
             outputType.type = 2;
             write_item_to_file(outputType);
-            outputType = reset_outputtype_struct(outputType);
+            outputType = reset_struct(outputType);
         }
 
         else if(character == '('){
             outputType.content[0] = (char) character;
             outputType.type = 3;
             write_item_to_file(outputType);
-            outputType = reset_outputtype_struct(outputType);
+            outputType = reset_struct(outputType);
         }
 
         else if(character == ')'){
             outputType.content[0] = (char) character;
             outputType.type = 4;
             write_item_to_file(outputType);
-            outputType = reset_outputtype_struct(outputType);
+            outputType = reset_struct(outputType);
         }
         
 
@@ -161,6 +161,7 @@ int startTokenizer(){
     }
     return 0;
 }
+
 
 #ifdef NOMAIN
 int main(){
