@@ -8,12 +8,10 @@ Created by Karol Przestrzelski
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 // Include float stack
 #include "stack.h"
 
 #define INPUT_FILE "codegenerated.txt"
-
 // Check if two strings are equal
 #define EQUAL(a,b) strcmp((a), (b)) == 0
 // Check if a is equal to instructions
@@ -46,11 +44,8 @@ instruction *parse_instruction(char *line, ssize_t length){
     instruction *ins = (instruction *)malloc(sizeof(instruction));
     // Set the value array length
     ins->value[length];
-    /*
-     Iterate through each character in the line
-     untl newline or space is reached
-     or if the length of the line is reached
-     */
+     // Iterate through each character in the line until newline 
+     // or space is reached or if the length of the line is reached
     char *ptr = line;
     int i = 0;
     while (i < length && *ptr != ' ' && *ptr != '\n'){
@@ -70,7 +65,9 @@ instruction *parse_instruction(char *line, ssize_t length){
     return ins;
 }
 
-// Check which instruction was read annd apply it on the stack
+/*
+Check which instruction was read annd apply it on the stack
+*/
 void execute(instruction *i, fstack *f){
     if (LOADINT(i->op)){
         push(f, atof(i->value));
@@ -104,10 +101,11 @@ void processFile(FILE *fp, fstack *stack){
   fclose(fp);
 }
 
-// Read the INPUT_FILE line by line, executing each instruction line
-// Print the output of stack
+/*
+Read the INPUT_FILE line by line, executing each instruction line
+Print the output of stack
+*/
 int startVirtualMachine(){
-
     // Initialize variables for reading the file
     FILE *fp = fopen(INPUT_FILE, "r");
     // Create float stack of length 16
