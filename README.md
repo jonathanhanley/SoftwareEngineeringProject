@@ -11,8 +11,8 @@
 
 ## Coding Requirements
     All code will be commented to ensure everyone on the team can understand what is happening and ensure maintainability
-    
-    ##### Commenting Standards
+
+###### Sample I/O Files
     
     There should be a comment above all functions in the following format:
     
