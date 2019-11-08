@@ -1,9 +1,12 @@
 /*
 CS3500 - Software Engineering Project
-Calculator using - Tokenizer, infix2postfix, code generator, VM
 
-codegenerator.c
 Created by Colin Kelleher
+
+Contributed to by: 
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
 */
 
 /*
