@@ -12,6 +12,21 @@
 ## Coding Requirements
     All code will be commented to ensure everyone on the team can understand what is happening and ensure maintainability
     
+    ##### Commenting Standards
+    
+    There should be a comment above all functions in the following format:
+    
+    /*
+    Comment line 1
+    Comment line 2
+    Comment line 3
+    */
+    
+    If additional comments are needed within the function they should be in the following format:
+    
+    // This is an example of a comment line 1
+    // This is an example of a comment line 2
+    
 ## Due Dates
 - [x] Design - Friday 11 October @ 23:59
 - [ ] Implementation - Friday 22 November @ 23:59
