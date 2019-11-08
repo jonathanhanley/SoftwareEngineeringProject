@@ -6,7 +6,7 @@
 #include<string.h>
 #include <ctype.h>
 #define OUTPUT_FILE "tokenized.txt"
-
+#define NONAME_
 
 //Struct to represent a Float, Int or an Opperator
 struct Output_type{
@@ -71,15 +71,13 @@ void write_item_to_file(struct Output_type outputType){
     output = fopen(OUTPUT_FILE, "a");
     int type = outputType.type;
     char* key = int_to_key(type);
-    int isFloat = strcmp(key, "F");
-    int isNum = strcmp(key, "I");
-    if (isFloat || isNum){
-        fprintf(output, "%s %s\n", key, outputType.content);
-        printf("%s %s\n", key, outputType.content);
+    if (type == 3 || type == 4){
+        fprintf(output, "%s %c\n", key, outputType.content[0]);
+        //printf("%s %c\n", key, outputType.content[0]);
 
     } else {
-        printf("%d %c\n", outputType.type, outputType.content[0]);
-        fprintf(output, "%s %c\n", key, outputType.content[0]);
+        //printf("%s %s\n", key, outputType.content);
+        fprintf(output, "%s %s\n", key, outputType.content);
     }
 
     fclose(output); 
