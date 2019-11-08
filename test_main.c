@@ -1,3 +1,14 @@
+/*
+CS3500 - Software Engineering Project
+
+test_main.c
+
+Karol Przestrzelski
+Colin Kelleher
+Jonathan Hanley
+Liam de la Cour
+*/
+
 #include <ctap.h>
 
 #include "codegenerator.h"
