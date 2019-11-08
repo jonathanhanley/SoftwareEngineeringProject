@@ -45,9 +45,8 @@ int startInfixToPostfix () {
         // If the input is a Float:
         if (key == 'F') {
             
-            /* Remove the Key and the space after the key, from the buffer. 
-            Prepending 0's to a number will not affect the value of said number
-            */
+            // Remove the Key and the space after the key, from the buffer. 
+            // Prepending 0's to a number will not affect the value of said number
             buffer[0] = '0';
             buffer[1] = '0';
 
@@ -58,9 +57,8 @@ int startInfixToPostfix () {
         // Else if the input is an Integer:
         }else if (key == 'I') {
 
-            /* Remove the Key and the space after the key, from the buffer. 
-            Prepending 0's to a number will not affect the value of said number
-            */
+            // Remove the Key and the space after the key, from the buffer. 
+            // Prepending 0's to a number will not affect the value of said number
             buffer[0] = '0';
             buffer[1] = '0';
 
@@ -74,11 +72,9 @@ int startInfixToPostfix () {
             // Get the operator from the buffer. It is stored at index 2
             char operator = buffer[2];
             
-            /*
-            While (There are operators on the stack AND ( The operator on top of the stack has greater precedence
-            than the current operator OR the operator on top of the stack has equal precedence to the current operator)
-            AND the operator at the top of the stack is not a left bracket '(' ):
-            */
+            // While (There are operators on the stack AND ( The operator on top of the stack has greater precedence
+            // than the current operator OR the operator on top of the stack has equal precedence to the current operator)
+            // AND the operator at the top of the stack is not a left bracket '(' ):
             while ( (operatorStackIndex > 0 && (greaterPrecedence(operatorStack[operatorStackIndex-1], operator) ||
             equalPrecedence(operatorStack[operatorStackIndex-1], operator))
             && operatorStack[operatorStackIndex - 1] != '(') ) {
@@ -104,7 +100,7 @@ int startInfixToPostfix () {
             operatorStack[operatorStackIndex] = buffer[2];
             operatorStackIndex += 1;
 
-        //Else if the input is a Right Bracket
+        // Else if the input is a Right Bracket
         }else if (key == 'R') {
             
             // While the top of the stack is not a left bracket
@@ -147,8 +143,9 @@ int startInfixToPostfix () {
     return 0;
 }
 
-
-// Returns true if op1 has greater precedence than op2
+/*
+Returns true if op1 has greater precedence than op2
+*/
 bool greaterPrecedence(char op1, char op2) {
     if ((op1 == '+' || op1 == '-') && (op2 == '+' || op2 == '-')) {
         return false;
@@ -162,8 +159,9 @@ bool greaterPrecedence(char op1, char op2) {
     return true;
 }
 
-
-// return true if op1 and op2 have equal precedence
+/*
+return true if op1 and op2 have equal precedence
+*/
 bool equalPrecedence(char op1, char op2) {
     if ((op1 == '+' || op1 == '-') && (op2 == '/' || op2 == '*')) {
         return false;
