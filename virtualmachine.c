@@ -1,6 +1,9 @@
-//
-// Created by Karol Przestrzelski
-//
+/*
+CS3500 - Software Engineering Project
+Calculator using - Tokenizer, infix2postfix, code generator, VM
+
+Created by Karol Przestrzelski
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
