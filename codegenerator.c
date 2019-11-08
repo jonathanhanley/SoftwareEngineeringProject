@@ -184,6 +184,7 @@ int startCodeGenerator () {
             resultToFile(inputtedtype);
         }                  
     }
+ return 0;
 }
 
 #ifdef NOMAIN
