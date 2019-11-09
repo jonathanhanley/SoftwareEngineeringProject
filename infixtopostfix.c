@@ -143,9 +143,18 @@ int startInfixToPostfix () {
     
     // After all the inputs are read in, if there are operators on the operator stack:
     if (operatorStackIndex > 0) {
-        
+
+
+
         // While the operator stack is not empty:
         while (operatorStackIndex > 0) {
+
+            // If there is a bracket at the top of the stack, then there are mismatched parentheses
+            if(operatorStack[operatorStackIndex-1] == '(' || operatorStack[operatorStackIndex-1] == ')') {
+                // Return an error
+                return -3;
+            }
+
             // Append the top operator on the stack to the output file
             fprintf(fpOut, "%c ", operatorStack[operatorStackIndex-1]);
             fflush(fpOut);
