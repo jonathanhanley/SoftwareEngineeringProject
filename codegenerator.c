@@ -19,6 +19,7 @@ Include & Define statement block
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include "common.h"
 /* 
 defining the input & output files - ease of maintenance and 
 only have to change in one place should these files need to be 
@@ -40,85 +41,10 @@ set.
 #define subtractinstr "SUB"
 
  /*
-Create a structure to hold the inputted characters 
-(Float, Int, Operator) from the file and store them in a struct
+The string array that holds the corresponding keys associated with each integer value 
+Assigned in startCodeGenerator
 */
-typedef struct _InputtedType {
-    int pointer;
-    int type;
-    char content[50];
-} InputtedType;
-
- /*
-Below is a function used to reset the above struct
-back to its original values, to perform the next task.
-These values can also be seen within the main, when creating. 
-This function is vital to reset the structure after use, to ensure
-correctness. 
-*/
-void reset_inputtedtype_struct (InputtedType *inputtedtype){
-    inputtedtype->type = 1;
-    inputtedtype->pointer = 0;
-}
- /*
-The keyToValue function below, takes a key, assigned to an INT, FLOAT
-or OPERATOR, and translates it to the appropriate INSTRUCTION as specified
-in the INSTRUCTION SET
-I.E.: All floats are assigned to key 0 in the main, which is then translated 
-to the 'floatinstr' here which contrains the correction instruction LOADFLOAT
-*/
-char * keyToValue (int key) {
-    // Keys are assigned within the 'main'
-    if (key == 0) 
-    {
-        // floatinstr and corresponding below are all defined at the start
-        // using 'define' statements
-        return floatinstr;
-    } else if (key == 1)
-    {
-        return intinstr;
-    } else if (key == 2)
-    {
-        return multiplyinstr;
-    } else if (key == 3)
-    {
-        return divideinstr;
-    } else if (key == 4)
-    {
-        return addinstr;
-    } else if (key == 5)
-    {
-        return subtractinstr;
-    } else
-    {
-        return "Not Valid - TRY AGAIN!";
-    }
-};
-
-/*
-This is the function I call to write the result to the file
-I open the file in "a" = append mode, to append each instruction on to the end of the file.
-If I open the file in "w" = write mode, only the last instruction will be written
-to the file.
-strcmp = string compare.
-The instriction is then written to the outputfile according to the formatting
-i have specified in the code (i.e.: one instruction per line)
-*/
-void resultToFile(InputtedType *inputtedtype) {
-    FILE *outputFile;
-    outputFile = fopen(_outputFile_, "a");
-    int type = inputtedtype->type;
-    char *key = keyToValue(type);
-    if (strcmp(key,floatinstr) || strcmp(key, intinstr)) {
-        inputtedtype->content[inputtedtype->pointer] = '\0';
-        fprintf(outputFile, "%s %s\n", key, inputtedtype->content);
-    }else
-    {
-        fprintf(outputFile, "%s %c\n", key, inputtedtype->content[0]);
-    }
-    fclose(outputFile);
-    reset_inputtedtype_struct(inputtedtype);
-};
+char * instructionKeys[] = {floatinstr, intinstr, multiplyinstr, divideinstr, addinstr, subtractinstr};
 
  /*
 This is the 'main' function where the code is ran from. 
@@ -140,11 +66,9 @@ int startCodeGenerator () {
     // 1)
     FILE *outputFile;
     outputFile = fopen(_outputFile_, "w");
-    fclose(outputFile);
 
     // 2
-    InputtedType *inputtedtype = (InputtedType *)malloc(sizeof(InputtedType));
-    reset_inputtedtype_struct(inputtedtype);
+    CharacterType *charType = newCharacterType();
 
     // 3
     char lineread[100];
@@ -158,35 +82,33 @@ int startCodeGenerator () {
     for (int index = 0; index < strlen(lineread); index ++) {
         character = lineread[index];
 
+        // Infix to postfix has a space seperating each part so write on that
+        // Set the key (instruction) first
+        if (character == ' '){
+            resultToFile(outputFile, charType, instructionKeys);
+        } 
         // || - if isdigit(character) OR character == '.' is true
         // If one of them is true run the code following
-        if (isdigit(character) || character == '.'){
-            inputtedtype->content[inputtedtype->pointer] = character;
-            inputtedtype->pointer ++;
+        else if (isdigit(character) || character == '.'){
+            charType->content[charType->pointer] = character;
+            charType->pointer ++;
             // if there is a '.' it is assigned a type of 0, corresponding to a float
             if (character == '.'){
-                inputtedtype->type = 0;
+                charType->type = 0;
             }
-        } else {
-            if (inputtedtype->pointer > 0) {
-                resultToFile(inputtedtype);
-            }
-        }
+        } 
         // If the character ='*' meaning multiplication, type 2 is assigned
-        if (character == '*') {
-            inputtedtype->type = 2;
-            resultToFile(inputtedtype);
+        else if (character == '*') {
+            charType->type = 2;
         } else if (character == '/') {
-            inputtedtype->type = 3;
-            resultToFile(inputtedtype);
+            charType->type = 3;
         } else if (character == '+') {
-            inputtedtype->type = 4;
-            resultToFile(inputtedtype);
+            charType->type = 4;
         } else if (character == '-') {
-            inputtedtype->type = 5;
-            resultToFile(inputtedtype);
-        }                  
+            charType->type = 5;
+        }               
     }
+    fclose(outputFile);
  return 0;
 }
 
@@ -203,8 +125,8 @@ Sample Input:
 
 Sample Output:
 
-LOADFLOAT 1.33
-LOADFLOAT 24.6
+LOADFLOAT 1.33
+LOADFLOAT 24.6
 LOADINT 366
 MUL
 ADD
