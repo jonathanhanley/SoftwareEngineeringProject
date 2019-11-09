@@ -26,9 +26,12 @@ int startInfixToPostfix () {
 
     // The stack for the operators being read in, that will be processed by the shunting yard algorithm
     char operatorStack[64];
-    // This variable will always point to the next available space in the stack, i.e it is initally set to 0
+    // This variable will always point to the next available space in the stack, i.e it is initially set to 0
     int operatorStackIndex = 0;
 
+    // This variable will track the number of left brackets currently on stack, to determine if there are mismatched
+    // brackets
+    int numOfLeftBrackets = 0;
     
     // A pointer to the input text file
     FILE *fpIn = fopen("tokenized.txt", "r");
@@ -104,8 +107,18 @@ int startInfixToPostfix () {
             operatorStack[operatorStackIndex] = buffer[2];
             operatorStackIndex += 1;
 
+            // Increment numOfLeftBrackets
+            numOfLeftBrackets += 1;
+
         // Else if the input is a Right Bracket
         }else if (key == 'R') {
+
+            numOfLeftBrackets -= 1;
+
+            // There is not a matching bracket in the stack
+            if (numOfLeftBrackets < 0) {
+                return -1;
+            }
             
             // While the top of the stack is not a left bracket
             while (operatorStack[operatorStackIndex-1] != '(') {
@@ -113,6 +126,11 @@ int startInfixToPostfix () {
                 fprintf(fpOut, "%c ", operatorStack[operatorStackIndex-1]);
                 // Decrement the stack index
                 operatorStackIndex -= 1;
+
+                // If there is no matching left bracket in the stack
+                if(operatorStackIndex < 0) {
+                    return -2;
+                }
             }
             
             // If the top of the operator stack is a left bracket
