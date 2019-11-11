@@ -6,7 +6,7 @@
 #include<string.h>
 #include <ctype.h>
 #define OUTPUT_FILE "tokenized.txt"
-
+#define NONAME_
 
 //Struct to represent a Float, Int or an Opperator
 struct Output_type{
@@ -71,22 +71,20 @@ void write_item_to_file(struct Output_type outputType){
     output = fopen(OUTPUT_FILE, "a");
     int type = outputType.type;
     char* key = int_to_key(type);
-    int isFloat = strcmp(key, "F");
-    int isNum = strcmp(key, "I");
-    if (isFloat || isNum){
-        fprintf(output, "%s %s\n", key, outputType.content);
-        printf("%s %s\n", key, outputType.content);
+    if (type == 3 || type == 4){
+        fprintf(output, "%s %c\n", key, outputType.content[0]);
+        //printf("%s %c\n", key, outputType.content[0]);
 
     } else {
-        printf("%d %c\n", outputType.type, outputType.content);
-        fprintf(output, "%s %c\n", key, outputType.content[0]);
+        //printf("%s %s\n", key, outputType.content);
+        fprintf(output, "%s %s\n", key, outputType.content);
     }
 
     fclose(output); 
 }
 
 //main function
-int main(){
+int startTokenizer(){
     //reset the OUTPUT_FILE file
     rest_output_files();
 
@@ -125,6 +123,7 @@ int main(){
             //If we have reached the end of the Integer / Float
             if (outputType.pointer > 0){
                 //Write the Output_type to file 
+                outputType.content[outputType.pointer] = '\0';
                 write_item_to_file(outputType);
 
                 //Reset outputType
@@ -161,3 +160,10 @@ int main(){
     }
     return 0;
 }
+
+
+#ifdef NOMAIN
+int main(){
+    return startTokenizer();
+}
+#endif
