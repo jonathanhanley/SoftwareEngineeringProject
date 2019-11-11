@@ -46,6 +46,18 @@
 - [x] infix2postfix.c
 - [x] codegenerator.c
 - [x] virtualmachine.c
+- [x] test_main.c
+- [x] stack.c
+- [x] main.c
+- [x] common.c
+
+###### Include Files
+- [x] codegenerator.h
+- [x] common.h
+- [x] infixtopostfix.h
+- [x] stack.h
+- [x] tokenizer.h
+- [x] virtualmachine.h
     
 ###### Test Suite
 
