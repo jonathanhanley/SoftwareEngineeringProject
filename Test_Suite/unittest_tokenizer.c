@@ -77,6 +77,12 @@ void test_reset_struct(){
         }
 }
 
+/*
+Testing writing an Output_type struct to a file
+Writes several structs to the file
+Checks the file to see if the structs have been written to the
+file correctly
+*/
 void test_write_item_to_file(){
     struct Output_type output_type;
     rest_output_files();
@@ -122,6 +128,15 @@ void test_write_item_to_file(){
     fclose(file);
 }
 
+/*
+Testing if a character is added to the struct in the
+correct way.
+Adds characters to the struct,
+testing if the:
+    1) type attribute updates
+    2) pointer updates
+    3) content updates
+*/
 void test_convert_char_2_object(){
     struct Output_type output_type;
     output_type.type = 'I';
