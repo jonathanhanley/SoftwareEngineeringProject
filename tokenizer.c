@@ -16,7 +16,7 @@ Liam de la Cour
 #include<string.h>
 #include <ctype.h>
 #define OUTPUT_FILE "tokenized.txt"
-#define NOMAIN_
+#define NOMAIN
 
 struct Output_type{
     int pointer;
@@ -53,10 +53,14 @@ void write_item_to_file(struct Output_type outputType){
     char type = outputType.type;
     if (type == ')' || type == '('){
         fprintf(output, "%c %c\n", type, outputType.content[0]);
+        #ifdef NOMAIN
         printf("%c %c\n", type, outputType.content[0]);
-
+        #endif
+        
     } else {
+        #ifdef NOMAIN
         printf("%c %s\n", type, outputType.content);
+        #endif
         fprintf(output, "%c %s\n", type, outputType.content);
     }
 
