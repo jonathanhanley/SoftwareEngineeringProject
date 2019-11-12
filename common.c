@@ -3,7 +3,7 @@ CS3500 - Software Engineering Project
 
 Created by Colin Kelleher
 
-Contributed to by: 
+Contributed to by:
 Jonathan Hanley
 Karol Przestrzelski
 Liam de la Cour
@@ -22,11 +22,11 @@ Include & Define statement block
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "common.h"
+#include "include_files/common.h"
 
 
 /*
-Allocate memory for a new CharacterType 
+Allocate memory for a new CharacterType
 Set its default values using the reset function
 and return its pointer
 */
@@ -39,9 +39,9 @@ CharacterType *newCharacterType(){
  /*
 Below is a function used to reset the above struct
 back to its original values, to perform the next task.
-These values can also be seen within the main, when creating. 
+These values can also be seen within the main, when creating.
 This function is vital to reset the structure after use, to ensure
-correctness. 
+correctness.
 */
 void resetCharacterType (CharacterType *charType){
     charType->type = 1;
@@ -61,3 +61,16 @@ void resultToFile(FILE *outputFile, CharacterType *charType, char * keys[]) {
     fprintf(outputFile, "%s %s\n", key, charType->content);
     resetCharacterType(charType);
 };
+/*
+This function will create a text file, called 'nameOfTextFile', and will insert
+'content' into it. To be used for testing purposes!
+*/
+void createTextFile(char *nameOfTextFile, char *content) {
+
+
+  FILE *fpOut;
+  fpOut = fopen(nameOfTextFile, "w");
+
+  fprintf(fpOut, "%s\n", content);
+
+}
