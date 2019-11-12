@@ -1,6 +1,28 @@
+/*
+CS3500 - Software Engineering Project
+
+Testing with Tap
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
+
+/*
+Include statements
+*/
 #include <ctap.h>
 #include "tokenizer.c"
 
+
+/*
+Testing the output file (text file)
+Creating test cases - list of inputs [0-9] as below
+Checking if the content has been written to the file, checking size
+and then resetting the file 
+*/
 void test_rest_output_files(){
     char *inputs[10];
     inputs[0] = "1+1";
@@ -30,6 +52,13 @@ void test_rest_output_files(){
     }
 }
 
+/*
+Testing resetting the structure
+Creating test cases - list of inputs
+checking setting/resetting output_type.content
+checking setting/resetting  output_type.type
+checking setting/resetting  output_type.pointer
+*/
 void test_reset_struct(){
         struct Output_type output_type;
         char inputs[] = {'L', 'R', ')', '(', 'O'};
@@ -47,6 +76,9 @@ void test_reset_struct(){
 
         }
 }
+/*
+Running the above tests
+*/
 TESTS{
     test_rest_output_files();
     test_reset_struct();
