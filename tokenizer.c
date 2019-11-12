@@ -6,7 +6,7 @@
 #include<string.h>
 #include <ctype.h>
 #define OUTPUT_FILE "tokenized.txt"
-#define NOMAIN
+#define NOMAIN_
 
 struct Output_type{
     int pointer;
