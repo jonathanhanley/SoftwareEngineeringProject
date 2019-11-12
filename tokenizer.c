@@ -4,9 +4,8 @@
 
 #include <stdio.h>
 #include<string.h>
-#include <ctype.h> 
+#include <ctype.h>
 #define OUTPUT_FILE "tokenized.txt"
-#define NOMAIN
 
 
 //Struct to represent a Float, Int or an Opperator
@@ -77,21 +76,21 @@ struct Output_type char_to_object(struct Output_type outputType, char character)
                 outputType.content[0] = (char) character;
                 outputType.type = 'O';
                 outputType = write_item_to_file(outputType);
-                
+
             }
 
             else if(character == '('){
                 outputType.content[0] = (char) character;
                 outputType.type = 'L';
                 outputType = write_item_to_file(outputType);
-               
+
             }
 
             else if(character == ')'){
                 outputType.content[0] = (char) character;
                 outputType.type = 'R';
                 outputType = write_item_to_file(outputType);
-                
+
             }
         }
     return outputType;
