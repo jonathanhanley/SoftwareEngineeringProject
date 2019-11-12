@@ -2,18 +2,17 @@ CC=gcc -I include_files
 objects = main.o codegenerator.o infixtopostfix.o \
 		tokenizer.o virtualmachine.o stack.o common.o
 
-calculator:  $(objects) 
+calculator:  $(objects)
 			@echo "Building calculator"
-			$(CC) -o calculator $(objects) 
+			$(CC) -o calculator $(objects)
 
-# codegenerator.o: include_files/common.h
-# virtualmachine.o: include_files/stack.h
-# main.o: include_files/stack.h include_files/common.h
-# dummy.o:	
+LIST = stack common virtualmachine codegenerator infix2postfix tokenizer
+targets = $(addprefix test_, $(LIST))
 
-test: $(objects) test_main.o
-			$(CC) -o test_calculator.t $(objects) test_main.o
-			./test_calculator.t
+all: $(targets)
+
+$(targets): test_%: %.o stack.o common.o
+	$(CC) -o $@.t $< Test_Suite/unit$@.c
 
 .PHONY: clean
 clean:
