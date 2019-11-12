@@ -6,6 +6,7 @@ Created by Karol Przestrzelski
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "stack.h"
 
 /*
@@ -25,8 +26,7 @@ If the stack is empty, return 0
 float pop(fstack *f){
     if (f->currentPosition == -1)
         return 0;
-    float v = f->list[f->currentPosition--];
-    return v;
+    return f->list[f->currentPosition--];
 }
 /*
 Push new item onto stack
@@ -38,5 +38,7 @@ void push(fstack *f, float item){
 Get length of stack
 */
 int len(fstack *f){
-    return f->currentPosition;
+    if (f->currentPosition == -1)
+        return 0;
+    return f->currentPosition + 1;
 }

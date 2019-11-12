@@ -6,9 +6,11 @@
 #ifndef __fstack__
 #define __fstack__
 
+#define STACK_SIZE 64
+
 typedef struct __fstack {
     int currentPosition;
-    long size: 64;
+    long size: STACK_SIZE;
     float list[];
 } fstack;
 
