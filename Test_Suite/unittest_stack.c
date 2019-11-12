@@ -1,12 +1,34 @@
+/*
+CS3500 - Software Engineering Project
+
+Testing with Tap
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
+/*
+Include statements
+*/
 #include "stack.h"
 #include <stdio.h>
 #include <ctap.h>
 
+/*
+A test to check if the stack is empty
+Returns OK is length of stack is zero
+*/
 void testEmptyStack(){
     fstack *stack = FStack();
     ok(len(stack) == 0, "Length of new stack is 0");
 }
 
+/*
+Checking stack operations 
+Push, Pop, Size
+*/
 void testOperations(){
     fstack *stack = FStack();
     // Push 3 elements onto stack
@@ -30,6 +52,9 @@ void testOperations(){
     ok(len(stack) == 0, "Stack is empty again");
 }
 
+/*
+Running the above tests
+*/
 TESTS{
     testEmptyStack();
     testOperations();
