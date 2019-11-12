@@ -6,9 +6,8 @@
 #include<string.h>
 #include <ctype.h>
 #define OUTPUT_FILE "tokenized.txt"
+#define NOMAIN
 
-
-//Struct to represent a Float, Int or an Opperator
 struct Output_type{
     int pointer;
     char type;
@@ -23,7 +22,6 @@ void rest_output_files(){
     fclose(output);
 }
 
-
 //Function to reset the Output_type struct back to default
 struct Output_type reset_struct(struct Output_type outputType){
     for (int i = 0; i < outputType.pointer; i++){
@@ -36,8 +34,10 @@ struct Output_type reset_struct(struct Output_type outputType){
 }
 
 
+
+
 //Function to write an Output_type object to the OUTPUT file
-struct Output_type write_item_to_file(struct Output_type outputType){
+void write_item_to_file(struct Output_type outputType){
     FILE *output;
     output = fopen(OUTPUT_FILE, "a");
     char type = outputType.type;
@@ -49,55 +49,56 @@ struct Output_type write_item_to_file(struct Output_type outputType){
         printf("%c %s\n", type, outputType.content);
         fprintf(output, "%c %s\n", type, outputType.content);
     }
-    fclose(output);
-    return reset_struct(outputType);
+
+
+    fclose(output); 
 }
 
-struct Output_type char_to_object(struct Output_type outputType, char character){
+struct Output_type convert_char_2_object(struct Output_type outputType, char character){
         if (isdigit(character) || character == '.'){
             outputType.content[outputType.pointer] = character;
             outputType.pointer ++;
-
             if (character == '.'){
                 outputType.type = 'F';
             }
 
         } else{
-
             if (outputType.pointer > 0){
                 outputType.content[outputType.pointer] = '\0';
-                outputType = write_item_to_file(outputType);
-            }
-
-            else if(character == '*' ||
-                        character == '-' ||
-                        character == '+' ||
-                        character == '/'){
-                outputType.content[0] = (char) character;
-                outputType.type = 'O';
-                outputType = write_item_to_file(outputType);
-
-            }
-
-            else if(character == '('){
-                outputType.content[0] = (char) character;
-                outputType.type = 'L';
-                outputType = write_item_to_file(outputType);
-
-            }
-
-            else if(character == ')'){
-                outputType.content[0] = (char) character;
-                outputType.type = 'R';
-                outputType = write_item_to_file(outputType);
-
+                write_item_to_file(outputType);
+                outputType = reset_struct(outputType);
             }
         }
+        if(character == '*' ||
+                    character == '-' ||
+                    character == '+' ||
+                    character == '/'){
+            outputType.content[0] = (char) character;
+            outputType.type = 'O';
+            write_item_to_file(outputType);
+            outputType = reset_struct(outputType);
+        }
+
+        else if(character == '('){
+            outputType.content[0] = (char) character;
+            outputType.type = 'L';
+            write_item_to_file(outputType);
+            outputType = reset_struct(outputType);
+        }
+
+        else if(character == ')'){
+            outputType.content[0] = (char) character;
+            outputType.type = 'R';
+            write_item_to_file(outputType);
+            outputType = reset_struct(outputType);
+        }
+    
     return outputType;
 }
 //main function
 int startTokenizer(){
     rest_output_files();
+
     char singleLine[150];
     char character;
     FILE *fPointer;
@@ -105,17 +106,14 @@ int startTokenizer(){
     fgets(singleLine, 150, fPointer);
     int len = strlen(singleLine);
 
-    //Create the output object
     struct Output_type outputType;
     outputType.pointer = 0;
-    outputType.type = 'I';
+    outputType.type = 1;
 
-    //Traverse though the line
     for (int index = 0; index <= len; index++) {
 
-        //Read the character at the position [index]
         character = singleLine[index];
-        outputType = char_to_object(outputType, character);
+        outputType = convert_char_2_object(outputType, character);
 
 
     }
