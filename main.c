@@ -1,6 +1,11 @@
-// 
-// Created by Karol Przestrzelski
-//
+/*
+CS3500 - Software Engineering Project
+
+Karol Przestrzelski
+Colin Kelleher
+Jonathan Hanley
+Liam de la Cour
+*/
 
 /*
 This is the main file that starts all the seperate calculator components

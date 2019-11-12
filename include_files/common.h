@@ -1,3 +1,14 @@
+/*
+CS3500 - Software Engineering Project
+
+include_files/common.h
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
 #ifndef __COMMONCODE__
 #define __COMMONCODE__
 
