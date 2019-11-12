@@ -49,9 +49,15 @@ void testGreaterPrecedenceFunction() {
   ok(greaterPrecedence('-', '+') == false, "- does not have greater precedence than +");
   ok(greaterPrecedence('-', '-') == false, "- does not have greater precedence than +");
 
+}
 
+void testInfixToPostfixComponent() {
 
-
+  /*
+  write to first file (with name, char array ie string);
+  run the function, so main()
+  compare output file with string:
+  */
 
 }
 
