@@ -1,7 +1,17 @@
-//
-// Created by Jonathan hanley on 09/10/2019.
-//
+/*
+CS3500 - Software Engineering Project
 
+Created by Jonathan Hanley
+
+Contributed to by: 
+Karol Przestrzelski
+Colin Kelleher
+Liam de la Cour
+*/
+
+/*
+ include statements & defining output file
+*/
 #include <stdio.h>
 #include<string.h>
 #include <ctype.h>
@@ -14,15 +24,17 @@ struct Output_type{
     char content[25];
 };
 
-
-//Function to reset the output file back to an empty file
+/*
+Function to reset the output file back to an empty file
+*/
 void rest_output_files(){
     FILE *output;
     output = fopen(OUTPUT_FILE, "w");
     fclose(output);
 }
-
-//Function to reset the Output_type struct back to default
+/*
+Function to reset the Output_type struct back to default
+*/
 struct Output_type reset_struct(struct Output_type outputType){
     for (int i = 0; i < outputType.pointer; i++){
         outputType.content[i] = '\0';
@@ -32,11 +44,9 @@ struct Output_type reset_struct(struct Output_type outputType){
 
     return outputType;
 }
-
-
-
-
-//Function to write an Output_type object to the OUTPUT file
+/*
+Function to write an Output_type object to the OUTPUT file
+*/
 void write_item_to_file(struct Output_type outputType){
     FILE *output;
     output = fopen(OUTPUT_FILE, "a");
@@ -53,7 +63,12 @@ void write_item_to_file(struct Output_type outputType){
 
     fclose(output); 
 }
-
+/*
+Adding the appropriate token to the corresponding 
+input from the file 
+for example 'O' is assigned to all operators [-,+,/]
+and is then written out
+*/
 struct Output_type convert_char_2_object(struct Output_type outputType, char character){
         if (isdigit(character) || character == '.'){
             outputType.content[outputType.pointer] = character;
@@ -95,7 +110,11 @@ struct Output_type convert_char_2_object(struct Output_type outputType, char cha
     
     return outputType;
 }
-//main function
+/*
+main function
+Used for running the tokenizer
+File Handling & Dealing with strctures
+*/
 int startTokenizer(){
     rest_output_files();
 
@@ -120,7 +139,9 @@ int startTokenizer(){
     return 0;
 }
 
-
+/*
+Used for testing
+*/
 #ifdef NOMAIN
 int main(){
     return startTokenizer();
