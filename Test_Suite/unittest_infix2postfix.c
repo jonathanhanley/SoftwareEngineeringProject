@@ -1,8 +1,27 @@
+/*
+CS3500 - Software Engineering Project
+
+Testing with Tap
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
+/*
+Include statements
+*/
 #include <ctap.h>
 #include <stdbool.h>
-
 #include "infixtopostfix.h"
 
+
+/*
+*
+* Comment here
+*
+*/
 void testEqualPrecedenceFunction(){
 
   ok(equalPrecedence('+', '+') == true, "+ and + have equal precedence");
@@ -27,6 +46,11 @@ void testEqualPrecedenceFunction(){
 
 }
 
+/*
+*
+* Comment here
+*
+*/
 void testGreaterPrecedenceFunction() {
 
   ok(greaterPrecedence('*', '+') == true, "* has greater precedence than +");
@@ -61,6 +85,11 @@ void testInfixToPostfixComponent() {
 
 }
 
+/*
+*
+* Comment here
+*
+*/
 TESTS {
   testEqualPrecedenceFunction();
   testGreaterPrecedenceFunction();
