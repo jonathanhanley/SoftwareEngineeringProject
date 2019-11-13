@@ -3,7 +3,7 @@ CS3500 - Software Engineering Project
 
 Created by Karol Przestrzelski
 
-Contributed to by: 
+Contributed to by:
 Jonathan Hanley
 Colin Kelleher
 Liam de la Cour
@@ -13,6 +13,7 @@ Liam de la Cour
 #include <stdlib.h>
 #include <string.h>
 // Include float stack
+#include "virtualmachine.h"
 #include "stack.h"
 
 #define INPUT_FILE "codegenerated.txt"
@@ -33,12 +34,6 @@ Liam de la Cour
                 float one = pop(f); \
                 push(f, one o two); \
 
-// Struct for each instruction holding the operation and value
-typedef struct __instruction {
-    char op[10];
-    char value[];
-} instruction;
-
 /*
  Split *line into op and value - seperated by space
  And return new *instruction
@@ -48,7 +43,7 @@ instruction *parse_instruction(char *line, ssize_t length){
     instruction *ins = (instruction *)malloc(sizeof(instruction));
     // Set the value array length
     ins->value[length];
-     // Iterate through each character in the line until newline 
+     // Iterate through each character in the line until newline
      // or space is reached or if the length of the line is reached
     char *ptr = line;
     int i = 0;
