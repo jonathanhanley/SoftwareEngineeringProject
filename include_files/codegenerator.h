@@ -19,6 +19,6 @@ Liam de la Cour
 
 int startCodeGenerator();
 void classifyChar(CharacterType *charType, char character);
-char *readLine();
+void readLine(char lineread[]);
 
 #endif

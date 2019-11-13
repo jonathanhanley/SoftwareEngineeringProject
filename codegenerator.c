@@ -19,7 +19,7 @@ Include & Define statement block
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "common.h"
+#include "codegenerator.h"
 /*
 defining the input & output files - ease of maintenance and
 only have to change in one place should these files need to be
@@ -46,15 +46,13 @@ Assigned in startCodeGenerator
 */
 char * instructionKeys[] = {floatinstr, intinstr, multiplyinstr, divideinstr, addinstr, subtractinstr};
 
-char *readLine(){
+void readLine(char lineread[]){
     // 3
-    char lineread[100];
     FILE * inputFile;
     inputFile = fopen(_inputFile_, "r");
     //    fgets(pointer to array of chars, max num of chars to be read, file pointer)
     fgets(lineread,100,inputFile);
     fclose(inputFile);
-    return lineread;
 }
 
 void classifyChar(CharacterType *charType, char character){
@@ -104,7 +102,8 @@ int startCodeGenerator () {
     CharacterType *charType = newCharacterType();
 
     // 3
-    char *lineread = readLine();
+    char lineread[100];
+    readLine(lineread);
     char character;
 
     // 4
