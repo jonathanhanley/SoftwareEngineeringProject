@@ -14,7 +14,7 @@ Liam de la Cour
 Include statements
 */
 #include <ctap.h>
-#include "tokenizer.c"
+#include "../tokenizer.c"
 
 
 /*
@@ -76,10 +76,100 @@ void test_reset_struct(){
 
         }
 }
+
+/*
+Testing writing an Output_type struct to a file
+Writes several structs to the file
+Checks the file to see if the structs have been written to the
+file correctly
+*/
+void test_write_item_to_file(){
+    struct Output_type output_type;
+    rest_output_files();
+    output_type.type = 'I';
+    output_type.content[0] = '1';
+    output_type.pointer = 1;
+    output_type.content[1] = '0';
+    output_type.pointer++;
+    write_item_to_file(output_type);
+    output_type = reset_struct(output_type);
+
+    output_type.type = 'O';
+    output_type.content[0] = '+';
+    output_type.pointer++;
+    write_item_to_file(output_type);
+    output_type = reset_struct(output_type);
+
+    output_type.type = 'L';
+    output_type.content[0] = '(';
+    output_type.pointer++;
+    write_item_to_file(output_type);
+    output_type = reset_struct(output_type);
+
+    output_type.type = 'R';
+    output_type.content[0] = ')';
+    output_type.pointer++;
+    write_item_to_file(output_type);
+    output_type = reset_struct(output_type);
+
+    FILE * file;
+    char * line;
+    size_t length = 0;
+    ssize_t read;
+    file = fopen("tokenized.txt", "r");
+    read = getline(&line, &length, file);
+    ok(strcmp(("%s", line), "I 10\n") == 0, "First Line Okay");
+    read = getline(&line, &length, file);
+    ok(strcmp(("%s", line), "O +\n") == 0, "Second Line Okay");
+    read = getline(&line, &length, file);
+    ok(strcmp(("%s", line), "L (\n") == 0, "Third Line Okay");
+    read = getline(&line, &length, file);
+    ok(strcmp(("%s", line), "R )\n") == 0, "Fourth Line Okay");
+    fclose(file);
+}
+
+/*
+Testing if a character is added to the struct in the
+correct way.
+Adds characters to the struct,
+testing if the:
+    1) type attribute updates
+    2) pointer updates
+    3) content updates
+*/
+void test_convert_char_2_object(){
+    struct Output_type output_type;
+    output_type.type = 'I';
+    output_type.pointer = 0;
+    ok(output_type.pointer == 0, "pointer has been set");
+    ok(output_type.type == 'I', "type has been set");
+
+    output_type = convert_char_2_object(output_type, '1');
+    ok(output_type.type == 'I', "type updated Okay");
+    ok(output_type.pointer == 1, "pointer increased Okay");
+    ok(output_type.content[0] == '1', "content updated Okay");
+
+    output_type = convert_char_2_object(output_type, '.');
+    ok(output_type.type == 'F', "type updated Okay");
+    ok(output_type.pointer == 2, "pointer increased Okay");
+    ok(output_type.content[1] == '.', "content updated Okay");
+
+    output_type = convert_char_2_object(output_type, '1');
+    ok(output_type.type == 'F', "type updated Okay");
+    ok(output_type.pointer == 3, "pointer increased Okay");
+    ok(output_type.content[2] == '1', "content updated Okay");
+
+    output_type = convert_char_2_object(output_type, ' ');
+    ok(output_type.type == 'I', "type updated Okay");
+    ok(output_type.pointer == 0, "pointer increased Okay");
+    ok(output_type.content[0] == '\0', "content updated Okay");
+}
 /*
 Running the above tests
 */
 TESTS{
     test_rest_output_files();
     test_reset_struct();
+    test_write_item_to_file();
+    test_convert_char_2_object();
 }

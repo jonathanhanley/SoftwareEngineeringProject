@@ -1,6 +1,13 @@
-//
-// Created by Karol Przestrzelski
-//
+/*
+CS3500 - Software Engineering Project
+
+include_files/infixtopostfix.h
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
 
 #ifndef __INFIXTOPOSTIX__
 #define __INFIXTOPOSTIX__
