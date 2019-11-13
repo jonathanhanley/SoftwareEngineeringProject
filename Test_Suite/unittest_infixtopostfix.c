@@ -20,7 +20,7 @@ Include statements
 
 /*
 *
-* Comment here
+* Test every combination of operators to ensure equalPrecedence fucntion returns correct value
 *
 */
 void testEqualPrecedenceFunction(){
@@ -49,7 +49,7 @@ void testEqualPrecedenceFunction(){
 
 /*
 *
-* Comment here
+* Test every combination of operators to ensure greaterPrecedence fucntion returns correct value
 *
 */
 void testGreaterPrecedenceFunction() {
@@ -76,27 +76,24 @@ void testGreaterPrecedenceFunction() {
 
 }
 
+/*
+*
+* Creates a text file with tokenized input, runs infixtopostfix on it, then compares output FILE
+* to ensure correct output
+*
+*/
 void testInfixToPostfixComponent() {
-
-  /*
-  write to first file (with name, char array ie string);
-
-  run the function, so main()
-
-  compare output file with string:
-  */
 
   createTextFile("tokenized.txt", "I 1\nO +\nI 2\nO +\nI 3\n");
   startInfixToPostfix();
-
-  
   ok(compareTextInFile("postfixed.txt", "1 2 + 3 + ")== 1, "infixtopostfix works correctly on input 1 + 2 + 3");
+
 
 }
 
 /*
 *
-* Comment here
+* All the test functions
 *
 */
 TESTS {
