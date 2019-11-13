@@ -16,7 +16,7 @@ Liam de la Cour
 #include<string.h>
 #include <ctype.h>
 #define OUTPUT_FILE "tokenized.txt"
-#define NOMAIN_
+#define NOMAIN
 
 struct Output_type{
     int pointer;
@@ -81,14 +81,16 @@ struct Output_type convert_char_2_object(struct Output_type outputType, char cha
                 outputType.type = 'F';
             }
 
-        } else{
-            if (outputType.pointer > 0){
+        } 
+        
+        else if (outputType.pointer > 0){
                 outputType.content[outputType.pointer] = '\0';
                 write_item_to_file(outputType);
                 outputType = reset_struct(outputType);
-            }
+            
         }
-        if(character == '*' ||
+        
+        else if(character == '*' ||
                     character == '-' ||
                     character == '+' ||
                     character == '/'){
@@ -131,7 +133,7 @@ int startTokenizer(){
 
     struct Output_type outputType;
     outputType.pointer = 0;
-    outputType.type = 1;
+    outputType.type = 'I';
 
     for (int index = 0; index <= len; index++) {
 
