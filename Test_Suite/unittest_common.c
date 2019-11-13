@@ -1,0 +1,20 @@
+/*
+CS3500 - Software Engineering Project
+
+Testing with Tap
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
+
+/*
+Include statements
+*/
+#include <ctap.h>
+
+TESTS {
+    diag("Greetings from common.c");
+}
