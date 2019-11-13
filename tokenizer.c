@@ -3,7 +3,7 @@ CS3500 - Software Engineering Project
 
 Created by Jonathan Hanley
 
-Contributed to by: 
+Contributed to by:
 Karol Przestrzelski
 Colin Kelleher
 Liam de la Cour
@@ -15,6 +15,7 @@ Liam de la Cour
 #include <stdio.h>
 #include<string.h>
 #include <ctype.h>
+#include "common.h"
 #define OUTPUT_FILE "tokenized.txt"
 #define NOMAIN_
 
@@ -56,7 +57,7 @@ void write_item_to_file(struct Output_type outputType){
         #ifdef NOMAIN
         printf("%c %c\n", type, outputType.content[0]);
         #endif
-        
+
     } else {
         #ifdef NOMAIN
         printf("%c %s\n", type, outputType.content);
@@ -65,56 +66,56 @@ void write_item_to_file(struct Output_type outputType){
     }
 
 
-    fclose(output); 
+    fclose(output);
 }
 /*
-Adding the appropriate token to the corresponding 
-input from the file 
+Adding the appropriate token to the corresponding
+input from the file
 for example 'O' is assigned to all operators [-,+,/]
 and is then written out
 */
-struct Output_type convert_char_2_object(struct Output_type outputType, char character){
+char *keys[] = {"I", "F", "O", "L", "R"};
+CharacterType *convert_char_2_object(CharacterType *outputType, char character){
+        FILE *output;
+        output = fopen(OUTPUT_FILE, "a");
         if (isdigit(character) || character == '.'){
-            outputType.content[outputType.pointer] = character;
-            outputType.pointer ++;
+            outputType->content[outputType->pointer] = character;
+            outputType->pointer ++;
             if (character == '.'){
-                outputType.type = 'F';
+                outputType->type = 1;
             }
 
-        } 
-        
-        else if (outputType.pointer > 0){
-                outputType.content[outputType.pointer] = '\0';
-                write_item_to_file(outputType);
-                outputType = reset_struct(outputType);
-            
         }
-        
-        else if(character == '*' ||
+
+        else if (outputType->pointer > 0){
+                outputType->content[outputType->pointer] = '\0';
+                resultToFile(output, outputType, keys);
+        }
+
+        if(character == '*' ||
                     character == '-' ||
                     character == '+' ||
                     character == '/'){
-            outputType.content[0] = (char) character;
-            outputType.type = 'O';
-            write_item_to_file(outputType);
-            outputType = reset_struct(outputType);
+            outputType->content[outputType->pointer++] = (char) character;
+            outputType->type = 2;
+            resultToFile(output, outputType, keys);
         }
 
         else if(character == '('){
-            outputType.content[0] = (char) character;
-            outputType.type = 'L';
-            write_item_to_file(outputType);
-            outputType = reset_struct(outputType);
+            outputType->content[outputType->pointer++] = (char) character;
+            outputType->type = 3;
+            resultToFile(output, outputType, keys);
         }
 
         else if(character == ')'){
-            outputType.content[0] = (char) character;
-            outputType.type = 'R';
-            write_item_to_file(outputType);
-            outputType = reset_struct(outputType);
+            outputType->content[outputType->pointer++] = (char) character;
+            outputType->type = 4;
+            resultToFile(output, outputType, keys);
         }
-    
-    return outputType;
+        fclose(output);
+
+
+    //return outputType;
 }
 /*
 main function
@@ -131,14 +132,12 @@ int startTokenizer(){
     fgets(singleLine, 150, fPointer);
     int len = strlen(singleLine);
 
-    struct Output_type outputType;
-    outputType.pointer = 0;
-    outputType.type = 'I';
+    CharacterType *outputType = newCharacterType();
 
     for (int index = 0; index <= len; index++) {
 
         character = singleLine[index];
-        outputType = convert_char_2_object(outputType, character);
+        convert_char_2_object(outputType, character);
 
 
     }
