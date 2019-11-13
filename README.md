@@ -36,7 +36,7 @@
 - [x] DesignDocumentationV1.pdf
 - [ ] DesignDocumentationV2.pdf 
 ###### Sample I/O Files
-- [ ] input.txt
+- [x] input.txt
 - [x] tokenized.txt
 - [x] postfixed.txt
 - [x] codegenerated.txt
