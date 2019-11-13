@@ -88,6 +88,7 @@ int compareTextInFile(char *nameOfTextFile, char *contentToCompare) {
   fclose(fpIn);
 
 
+
   if (strcmp(line, contentToCompare) == 0) {
     return 1;
   }

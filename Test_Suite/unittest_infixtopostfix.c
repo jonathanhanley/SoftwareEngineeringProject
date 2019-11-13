@@ -86,9 +86,11 @@ void testInfixToPostfixComponent() {
   compare output file with string:
   */
 
-  createTextFile("tokenized.txt", "I 1\nO +\nI 2\nO +\nI 3");
+  createTextFile("tokenized.txt", "I 1\nO +\nI 2\nO +\nI 3\n");
   startInfixToPostfix();
-  ok(compareTextInFile("postfixed.txt", "1 2 3 + +") == 1, "infixtopostfix works correctly on input 1 + 2 + 3");
+
+  int compare = compareTextInFile("postfixed.txt", "1 2 + 3 + ");
+  ok(compare == 1, "infixtopostfix works correctly on input 1 + 2 + 3");
 
 }
 
