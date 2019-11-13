@@ -28,6 +28,6 @@ typedef struct _CharacterType {
 CharacterType *newCharacterType();
 void resetCharacterType(CharacterType *charType);
 void resultToFile(FILE *outputFile, CharacterType *charType, char * keys[]);
-void createTextFile(char *nameOfTextFile, char *content)
+void createTextFile(char *nameOfTextFile, char *content);
 
 #endif
