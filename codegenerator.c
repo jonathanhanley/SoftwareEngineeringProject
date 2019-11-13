@@ -19,7 +19,7 @@ Include & Define statement block
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "common.h"
+#include "codegenerator.h"
 /*
 defining the input & output files - ease of maintenance and
 only have to change in one place should these files need to be

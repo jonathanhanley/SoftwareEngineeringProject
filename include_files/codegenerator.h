@@ -12,6 +12,8 @@ Liam de la Cour
 #ifndef __CODEGENERATOR__
 #define __CODEGENERATOR__
 
+#include "common.h"
+
 int startCodeGenerator();
 void classifyChar(CharacterType *charType, char character);
 char *readLine();
