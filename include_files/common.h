@@ -29,5 +29,6 @@ CharacterType *newCharacterType();
 void resetCharacterType(CharacterType *charType);
 void resultToFile(FILE *outputFile, CharacterType *charType, char * keys[]);
 void createTextFile(char *nameOfTextFile, char *content);
+int compareTextInFile(char *nameOfTextFile, char *contentToCompare);
 
 #endif

@@ -15,6 +15,7 @@ Include statements
 #include <ctap.h>
 #include <stdbool.h>
 #include "infixtopostfix.h"
+#include "common.h"
 
 
 /*
@@ -79,9 +80,15 @@ void testInfixToPostfixComponent() {
 
   /*
   write to first file (with name, char array ie string);
+
   run the function, so main()
+
   compare output file with string:
   */
+
+  createTextFile("tokenized.txt", "I 1\nO +\nI 2\nO +\nI 3");
+  startInfixToPostfix();
+  ok(compareTextInFile("postfixed.txt", "1 2 3 + +") == 1, "infixtopostfix works correctly on input 1 + 2 + 3");
 
 }
 
@@ -93,4 +100,5 @@ void testInfixToPostfixComponent() {
 TESTS {
   testEqualPrecedenceFunction();
   testGreaterPrecedenceFunction();
+  testInfixToPostfixComponent();
 }

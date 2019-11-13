@@ -60,7 +60,7 @@ void resultToFile(FILE *outputFile, CharacterType *charType, char * keys[]) {
     charType->content[charType->pointer] = '\0';
     fprintf(outputFile, "%s %s\n", key, charType->content);
     resetCharacterType(charType);
-};
+}
 /*
 This function will create a text file, called 'nameOfTextFile', and will insert
 'content' into it. To be used for testing purposes!
@@ -71,6 +71,27 @@ void createTextFile(char *nameOfTextFile, char *content) {
   FILE *fpOut;
   fpOut = fopen(nameOfTextFile, "w");
 
-  fprintf(fpOut, "%s\n", content);
+  fprintf(fpOut, "%s", content);
+  fclose(fpOut);
+
+}
+
+int compareTextInFile(char *nameOfTextFile, char *contentToCompare) {
+
+  FILE *fpIn;
+  fpIn = fopen(nameOfTextFile, "r");
+
+  char line[64];
+
+  fgets(line, 64, fpIn);
+
+  fclose(fpIn);
+
+
+  if (strcmp(line, contentToCompare) == 0) {
+    return 1;
+  }
+
+  return 0;
 
 }
