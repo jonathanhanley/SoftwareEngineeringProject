@@ -14,7 +14,7 @@ Liam de la Cour
 Include statements
 */
 #include <ctap.h>
-#include "../tokenizer.c"
+#include <tokenizer.h>
 
 
 /*
@@ -118,13 +118,13 @@ void test_write_item_to_file(){
     ssize_t read;
     file = fopen("tokenized.txt", "r");
     read = getline(&line, &length, file);
-    ok(strcmp(("%s", line), "I 10\n") == 0, "First Line Okay");
+    is_string(line , "I 10\n", "First Line Okay");
     read = getline(&line, &length, file);
-    ok(strcmp(("%s", line), "O +\n") == 0, "Second Line Okay");
+    is_string(line, "O +\n", "Second Line Okay");
     read = getline(&line, &length, file);
-    ok(strcmp(("%s", line), "L (\n") == 0, "Third Line Okay");
+    is_string(line, "L (\n", "Third Line Okay");
     read = getline(&line, &length, file);
-    ok(strcmp(("%s", line), "R )\n") == 0, "Fourth Line Okay");
+    is_string(line, "R )\n", "Fourth Line Okay");
     fclose(file);
 }
 
