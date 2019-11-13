@@ -16,4 +16,10 @@ void rest_output_files();
 struct Output_type reset_struct(struct Output_type outputType);
 void write_item_to_file(struct Output_type outputType);
 struct Output_type convert_char_2_object(struct Output_type outputType, char character);
+
+struct Output_type{
+    int pointer;
+    char type;
+    char content[25];
+};
 #endif
