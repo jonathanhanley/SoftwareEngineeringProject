@@ -9,8 +9,13 @@ Karol Przestrzelski
 Liam de la Cour
 */
 
+
+
 #ifndef __CODEGENERATOR__
 #define __CODEGENERATOR__
+
+#include "common.h"
+#include <stdio.h>
 
 int startCodeGenerator();
 void classifyChar(CharacterType *charType, char character);
