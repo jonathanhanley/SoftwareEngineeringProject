@@ -14,3 +14,10 @@ Liam de la Cour
 Include statements
 */
 #include <ctap.h>
+#include "codegenerator.h"
+#include "common.h"
+
+
+TESTS {
+  
+}
