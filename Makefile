@@ -20,4 +20,4 @@ test: $(targets)
 
 .PHONY: clean
 clean:
-	-rm calculator *.o test_calculator.t
+	-rm calculator *.o *.t
