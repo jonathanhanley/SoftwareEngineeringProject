@@ -11,15 +11,10 @@ Liam de la Cour
 #ifndef __TOKENIZER__
 #define __TOKENIZER__
 
+#include "common.h"
+
 int startTokenizer();
 void rest_output_files();
-struct Output_type reset_struct(struct Output_type outputType);
-void write_item_to_file(struct Output_type outputType);
-struct Output_type convert_char_2_object(struct Output_type outputType, char character);
+void convert_char_2_object(CharacterType *outputType, char character);
 
-struct Output_type{
-    int pointer;
-    char type;
-    char content[25];
-};
 #endif
