@@ -15,7 +15,8 @@ all: $(targets)
 $(targets): test_%: %.o $(deps)
 	$(CC) -o $@.t Test_Suite/unit$@.c $^
 
-test: $(targets)
+unittest: $(targets)
+	$(CC) -o unittest_calculator Test_Suite/unittest_main.c
 
 
 .PHONY: clean
