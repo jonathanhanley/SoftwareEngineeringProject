@@ -84,9 +84,9 @@ int compareTextInFile(char *nameOfTextFile, char *contentToCompare) {
   FILE *fpIn;
   fpIn = fopen(nameOfTextFile, "r");
 
-  char line[strlen(contentToCompare)];
+  char line[strlen(contentToCompare) + 1];
 
-  fgets(line, strlen(contentToCompare), fpIn);
+  fgets(line, strlen(contentToCompare) + 1, fpIn);
 
   fclose(fpIn);
 
