@@ -21,7 +21,7 @@ Include statements
 Testing the output file (text file)
 Creating test cases - list of inputs [0-9] as below
 Checking if the content has been written to the file, checking size
-and then resetting the file 
+and then resetting the file
 */
 void test_rest_output_files(){
     char *inputs[10];
@@ -40,7 +40,7 @@ void test_rest_output_files(){
         FILE *testing_text_file;
         testing_text_file = fopen("tokenized.txt", "w");
         fprintf(testing_text_file, "%s", inputs[i]);
-        fseek(testing_text_file, 0, SEEK_END); 
+        fseek(testing_text_file, 0, SEEK_END);
         long fsize= ftell(testing_text_file);
         fclose(testing_text_file);
         ok(fsize > 0, "File has content");
@@ -50,82 +50,6 @@ void test_rest_output_files(){
         ok(fsize == 0, "File has been reset");
         fclose(testing_text_file);
     }
-}
-
-/*
-Testing resetting the structure
-Creating test cases - list of inputs
-checking setting/resetting output_type.content
-checking setting/resetting  output_type.type
-checking setting/resetting  output_type.pointer
-*/
-void test_reset_struct(){
-        struct Output_type output_type;
-        char inputs[] = {'L', 'R', ')', '(', 'O'};
-        for (int i = 0; i < 5; i++){
-            output_type.type = inputs[i];
-            output_type.content[0] = inputs[i];
-            output_type.pointer = 1;
-            ok(strlen(output_type.content) > 0, "output_type.content has set");
-            ok(output_type.type == inputs[i], "output_type.type has been set");
-            ok(output_type.pointer != 0, "output_type.pointer has been increased");
-            output_type = reset_struct(output_type);
-            ok(strlen(output_type.content) == 0, "output_type.content has been reset");
-            ok(output_type.type == 'I', "output_type.type has been reset");
-            ok(output_type.pointer == 0, "output_type.pointer has been reset");
-
-        }
-}
-
-/*
-Testing writing an Output_type struct to a file
-Writes several structs to the file
-Checks the file to see if the structs have been written to the
-file correctly
-*/
-void test_write_item_to_file(){
-    struct Output_type output_type;
-    rest_output_files();
-    output_type.type = 'I';
-    output_type.content[0] = '1';
-    output_type.pointer = 1;
-    output_type.content[1] = '0';
-    output_type.pointer++;
-    write_item_to_file(output_type);
-    output_type = reset_struct(output_type);
-
-    output_type.type = 'O';
-    output_type.content[0] = '+';
-    output_type.pointer++;
-    write_item_to_file(output_type);
-    output_type = reset_struct(output_type);
-
-    output_type.type = 'L';
-    output_type.content[0] = '(';
-    output_type.pointer++;
-    write_item_to_file(output_type);
-    output_type = reset_struct(output_type);
-
-    output_type.type = 'R';
-    output_type.content[0] = ')';
-    output_type.pointer++;
-    write_item_to_file(output_type);
-    output_type = reset_struct(output_type);
-
-    FILE * file;
-    char * line;
-    size_t length = 0;
-    ssize_t read;
-    file = fopen("tokenized.txt", "r");
-    read = getline(&line, &length, file);
-    is_string(line , "I 10\n", "First Line Okay");
-    read = getline(&line, &length, file);
-    is_string(line, "O +\n", "Second Line Okay");
-    read = getline(&line, &length, file);
-    is_string(line, "L (\n", "Third Line Okay");
-    read = getline(&line, &length, file);
-    is_string(line, "R )\n", "Fourth Line Okay");
-    fclose(file);
 }
 
 /*
