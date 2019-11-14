@@ -1,24 +1,27 @@
 CC=gcc -I include_files
-objects = main.o codegenerator.o infixtopostfix.o \
-		tokenizer.o virtualmachine.o stack.o common.o
 deps = stack.o common.o
-
-calculator:  $(objects)
-			@echo "Building calculator"
-			$(CC) -o calculator $(objects)
-
 LIST = stack common virtualmachine codegenerator infixtopostfix tokenizer
-targets = $(addprefix test_, $(LIST))
+objects = $(addsuffix .o, $(LIST))
+test_targets = $(addprefix test_, $(LIST))
 
-all: $(targets)
 
-$(targets): test_%: %.o $(deps)
+calculator:  $(objects) main.o
+			@echo "Building calculator"
+			$(CC) -o calculator $(objects) main.o
+
+all: $(test_targets) $(LIST)
+
+$(LIST): %: $(deps)
+	@echo $^
+	$(CC) -D NOMAIN -o $@ $@.c $^
+
+$(test_targets): test_%: %.o $(deps)
 	$(CC) -o $@.t Test_Suite/unit$@.c $^
 
-unittest: $(targets)
+unittest: $(test_targets)
 	$(CC) -o unittest_calculator Test_Suite/unittest_main.c
 
 
 .PHONY: clean
 clean:
-	-rm calculator *.o *.t
+	@rm -f unittest_calculator calculator *.o *.t $(LIST)
