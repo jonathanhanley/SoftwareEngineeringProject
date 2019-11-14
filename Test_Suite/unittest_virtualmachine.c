@@ -99,7 +99,7 @@ void testExecuteInstruction(){
 }
 
 void testRunVirtualMachine(){
-    createTextFile("hi.txt", "LOADINT 4\nLOADINT 4\nADD \nLOADINT 10\nMUL \n");
+    createTextFile("codegenerated.txt", "LOADINT 4\nLOADINT 4\nADD \nLOADINT 10\nMUL \n");
     FILE *saved = stdout;
     stdout = fopen("log.txt", "w");
     startVirtualMachine();
