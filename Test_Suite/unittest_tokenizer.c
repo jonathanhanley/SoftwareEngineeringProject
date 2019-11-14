@@ -16,7 +16,6 @@ Include statements
 #include <ctap.h>
 #include <tokenizer.h>
 
-
 /*
 Testing the output file (text file)
 Creating test cases - list of inputs [0-9] as below
@@ -62,38 +61,37 @@ testing if the:
     3) content updates
 */
 void test_convert_char_2_object(){
-    struct Output_type output_type;
-    output_type.type = 'I';
-    output_type.pointer = 0;
-    ok(output_type.pointer == 0, "pointer has been set");
-    ok(output_type.type == 'I', "type has been set");
+    CharacterType *output_type = newCharacterType();
+    output_type->type = 1;
+    output_type->pointer = 0;
+    ok(output_type->pointer == 0, "pointer has been set");
+    ok(output_type->type == 1, "type has been set");
 
-    output_type = convert_char_2_object(output_type, '1');
-    ok(output_type.type == 'I', "type updated Okay");
-    ok(output_type.pointer == 1, "pointer increased Okay");
-    ok(output_type.content[0] == '1', "content updated Okay");
+    convert_char_2_object(output_type, '1');
+    ok(output_type->type == 1, "type updated Okay");
+    ok(output_type->pointer == 1, "pointer increased Okay");
+    ok(output_type->content[0] == '1', "content updated Okay");
 
-    output_type = convert_char_2_object(output_type, '.');
-    ok(output_type.type == 'F', "type updated Okay");
-    ok(output_type.pointer == 2, "pointer increased Okay");
-    ok(output_type.content[1] == '.', "content updated Okay");
+    convert_char_2_object(output_type, '.');
+    ok(output_type->type == 0, "type updated Okay");
+    ok(output_type->pointer == 2, "pointer increased Okay");
+    ok(output_type->content[1] == '.', "content updated Okay");
 
-    output_type = convert_char_2_object(output_type, '1');
-    ok(output_type.type == 'F', "type updated Okay");
-    ok(output_type.pointer == 3, "pointer increased Okay");
-    ok(output_type.content[2] == '1', "content updated Okay");
+    convert_char_2_object(output_type, '1');
+    ok(output_type->type == 0, "type updated Okay");
+    ok(output_type->pointer == 3, "pointer increased Okay");
+    ok(output_type->content[2] == '1', "content updated Okay");
 
-    output_type = convert_char_2_object(output_type, ' ');
-    ok(output_type.type == 'I', "type updated Okay");
-    ok(output_type.pointer == 0, "pointer increased Okay");
-    ok(output_type.content[0] == '\0', "content updated Okay");
+    convert_char_2_object(output_type, ' ');
+    ok(output_type->type == 1, "type updated Okay");
+    ok(output_type->pointer == 0, "pointer increased Okay");
+    ok(output_type->content[0] == '\0', "content updated Okay");
 }
 /*
 Running the above tests
 */
 TESTS{
     test_rest_output_files();
-    test_reset_struct();
-    test_write_item_to_file();
+    printf("Why printf fixes ctap idk");
     test_convert_char_2_object();
 }
