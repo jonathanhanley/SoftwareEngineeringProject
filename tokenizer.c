@@ -74,7 +74,7 @@ input from the file
 for example 'O' is assigned to all operators [-,+,/]
 and is then written out
 */
-char *keys[] = {"I", "F", "O", "L", "R"};
+char *keys[] = {"F", "I", "O", "L", "R"};
 CharacterType *convert_char_2_object(CharacterType *outputType, char character){
         FILE *output;
         output = fopen(OUTPUT_FILE, "a");
@@ -82,7 +82,7 @@ CharacterType *convert_char_2_object(CharacterType *outputType, char character){
             outputType->content[outputType->pointer] = character;
             outputType->pointer ++;
             if (character == '.'){
-                outputType->type = 1;
+                outputType->type = 0;
             }
 
         }
