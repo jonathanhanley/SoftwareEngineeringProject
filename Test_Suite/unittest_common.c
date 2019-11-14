@@ -1,7 +1,8 @@
 /*
 CS3500 - Software Engineering Project
 
-Testing with Tap
+
+UNIT TEST - Common
 
 Colin Kelleher
 Jonathan Hanley

@@ -1,7 +1,26 @@
+/*
+CS3500 - Software Engineering Project
+
+
+INTEGRATION TEST - Tokenizer & Infixtopostfix
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
+
+/*
+Include statements
+*/
 #include <ctap.h>
 #include <tokenizer.h>
 #include <infixtopostfix.h>
 
+/*
+Creating sample inputs
+*/
 char *inputs[] = {
     "14 + 52",
     "12.5*(12+5)",
@@ -10,6 +29,9 @@ char *inputs[] = {
     "0 * 0 + 1"
 };
 
+/*
+Creating correct outputs for the sample inputs
+*/
 char *outputs[] = {
     "14.000000 52.000000 + ",
     "12.500000 12.000000 5.000000 + * ",

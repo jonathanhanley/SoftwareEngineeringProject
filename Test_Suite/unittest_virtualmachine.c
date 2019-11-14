@@ -1,3 +1,19 @@
+/*
+CS3500 - Software Engineering Project
+
+
+UNIT TEST - Virtual Machine
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
+
+/*
+Include statements
+*/
 #include <ctap.h>
 #include "virtualmachine.h"
 #include "stack.h"
@@ -92,7 +108,9 @@ void testRunVirtualMachine(){
     ok(compareTextInFile("log.txt", "80\n") == 1, "Running virtual machine works");
     remove("log.txt");
 }
-
+/*
+Running the above tests
+*/
 TESTS {
     testInstructionParse();
     testExecuteInstruction();
