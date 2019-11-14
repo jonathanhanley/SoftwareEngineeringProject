@@ -44,6 +44,9 @@ This function is vital to reset the structure after use, to ensure
 correctness.
 */
 void resetCharacterType (CharacterType *charType){
+    for (int i = 0; i < charType->pointer; i++){
+        charType->content[i] = '\0';
+    }
     charType->type = 1;
     charType->pointer = 0;
 }
