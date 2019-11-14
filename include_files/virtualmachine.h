@@ -24,7 +24,7 @@ typedef struct __instruction {
  Split *line into op and value - seperated by space
  And return new *instruction
 */
-instruction *parse_instruction(char *line, int length);
+instruction *parse_instruction(char *line);
 /*
 Check which instruction was read annd apply it on the stack
 */

@@ -38,9 +38,10 @@ Liam de la Cour
  Split *line into op and value - seperated by space
  And return new *instruction
 */
-instruction *parse_instruction(char *line, int length){
+instruction *parse_instruction(char *line){
     // Allocate space in memory for instruction
     instruction *ins = (instruction *)malloc(sizeof(instruction));
+    size_t length = strlen(line);
     // Set the value array length
     ins->value[length];
      // Iterate through each character in the line until newline
@@ -87,12 +88,12 @@ void execute(instruction *i, fstack *f){
 
 void processFile(FILE *fp, fstack *stack){
   char *line = NULL;
-  int len = 0;
+  ssize_t len = 0;
   ssize_t read;
   // Read each line
   while ((read = getline(&line, &len, fp)) != -1) {
       // Get new instruction passing in the line array and the length of the line
-      instruction *i = parse_instruction(line, read);
+      instruction *i = parse_instruction(line);
       // Run the instruction on the line
       execute(i, stack);
   }
