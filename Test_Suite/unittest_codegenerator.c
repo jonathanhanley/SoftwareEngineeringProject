@@ -1,7 +1,7 @@
 /*
 CS3500 - Software Engineering Project
 
-Testing with Tap
+UNIT TEST - Code Generator
 
 Colin Kelleher
 Jonathan Hanley
