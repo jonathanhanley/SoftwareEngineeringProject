@@ -70,12 +70,12 @@
 - [x] unittest_tokenizer.c
 - [x] unittest_virtualmachine.c
 
-     Integration Tests
+    Integration Tests
 - [x] integrationtest_infixtopostfix_codegenerator.c
 - [x] integrationtest_tokenizer_infixtopostfix.c
 - [ ] integrationtest_codegenerator_virtualmachine.c
 
-     System Test
+    System Test
 - [ ] overallSystemTest.c
     
 
