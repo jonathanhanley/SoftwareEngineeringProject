@@ -63,9 +63,12 @@ char *outputs[] = {
     "SUB \n",
 
 };
-
+/*
+Creating the appropriate inputs
+in the correct file to resemble the working version
+Inputs are written to this file in the correct format
+*/
 void _create_input(int test_num){
-
     FILE * file;
     file = fopen("tokenized.txt", "w");
     if (test_num == 0){
@@ -73,7 +76,6 @@ void _create_input(int test_num){
             fprintf(file, "%s\n", inputs[i]);
             input_index ++;
         }
-
     }
     else if (test_num == 1){
         for(int i = input_index; i < 8; i++){
@@ -87,12 +89,12 @@ void _create_input(int test_num){
             input_index ++;
         }
     }
-
-
-
     fclose(file);
 }
 
+/*
+Used to check if the output matches the input as defined above
+*/
 void output_matches_input(int test_num){
         FILE *fp;
         char str[1000];
@@ -105,13 +107,17 @@ void output_matches_input(int test_num){
     fclose(fp);
 
 }
+/*
+Creating the appropriate inputs
+Running the InfixToPostfix converter and CodeGenerator 
+Then checking to make sure the outputs match the expected output
+*/
 void test_integration_infixtopostfix_codegenerator(){
     for(int i = 0; i < num_tests; i++){
         _create_input(i);
         startInfixToPostfix();
         startCodeGenerator();
         output_matches_input(i);
-
     }
 }
 

@@ -38,7 +38,6 @@ void test_reset_struct(){
             ok(strlen(output_type->content) == 0, "output_type->content has been reset");
             ok(output_type->type == 1, "output_type->type has been reset");
             ok(output_type->pointer == 0, "output_type->pointer has been reset");
-
         }
 }
 

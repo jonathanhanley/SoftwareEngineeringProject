@@ -78,7 +78,9 @@ void createTextFile(char *nameOfTextFile, char *content) {
   fclose(fpOut);
 
 }
-
+/*
+This function will compare the texts within the file
+*/
 int compareTextInFile(char *nameOfTextFile, char *contentToCompare) {
 
   FILE *fpIn;

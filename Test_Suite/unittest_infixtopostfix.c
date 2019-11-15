@@ -20,9 +20,7 @@ Include statements
 
 
 /*
-*
-* Test every combination of operators to ensure equalPrecedence fucntion returns correct value
-*
+Test every combination of operators to ensure equalPrecedence fucntion returns correct value
 */
 void testEqualPrecedenceFunction(){
 
@@ -49,9 +47,7 @@ void testEqualPrecedenceFunction(){
 }
 
 /*
-*
-* Test every combination of operators to ensure greaterPrecedence fucntion returns correct value
-*
+Test every combination of operators to ensure greaterPrecedence fucntion returns correct value
 */
 void testGreaterPrecedenceFunction() {
 
@@ -78,10 +74,8 @@ void testGreaterPrecedenceFunction() {
 }
 
 /*
-*
-* Creates a text file with tokenized input, runs infixtopostfix on it, then compares output FILE
-* to ensure correct output
-*
+Creates a text file with tokenized input, runs infixtopostfix on it, then compares output FILE
+to ensure correct output
 */
 void testInfixToPostfixComponent() {
 
@@ -97,9 +91,7 @@ void testInfixToPostfixComponent() {
 }
 
 /*
-*
-* All the test functions
-*
+All the test functions
 */
 TESTS {
   testEqualPrecedenceFunction();
