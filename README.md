@@ -62,21 +62,21 @@
 ###### Test Suite
 
     Unit Tests
-    - [x] unittest_codegenerator.c
-    - [x] unittest_common.c
-    - [x] unittest_infixtopostfix.c
-    - [x] unittest_main.c
-    - [x] unittest_stack.c
-    - [x] unittest_tokenizer.c
-    - [x] unittest_virtualmachine.c
+- [x] unittest_codegenerator.c
+- [x] unittest_common.c
+- [x] unittest_infixtopostfix.c
+- [x] unittest_main.c
+- [x] unittest_stack.c
+- [x] unittest_tokenizer.c
+- [x] unittest_virtualmachine.c
 
      Integration Tests
-    - [x] integrationtest_infixtopostfix_codegenerator.c
-    - [x] integrationtest_tokenizer_infixtopostfix.c
-    - [ ] integrationtest_codegenerator_virtualmachine.c
+- [x] integrationtest_infixtopostfix_codegenerator.c
+- [x] integrationtest_tokenizer_infixtopostfix.c
+- [ ] integrationtest_codegenerator_virtualmachine.c
 
      System Test
-    - [ ] overallSystemTest.c
+- [ ] overallSystemTest.c
     
 
 
