@@ -1,42 +1,63 @@
+/*
+CS3500 - Software Engineering Project
+
+
+INTEGRATION TEST - Infixtopostfix & Code Generator
+
+Colin Kelleher
+Jonathan Hanley
+Karol Przestrzelski
+Liam de la Cour
+*/
+
+/*
+Include statements
+*/
 #include <ctap.h>
 #include <infixtopostfix.h>
 #include <codegenerator.h>
+
+/*
+Creating inputs, indexes and the number of tests
+*/
 int input_index = 0;
 int output_index = 0;
 int num_tests = 3;
 char *inputs[] = {
-    //Input 1
+    // Input 1
     "I 1",
     "O *",
     "I 2",
     "O +",
     "I 3",
 
-    //Input 2
+    // Input 2
     "F 2.2",
     "O +",
     "I 5",
 
-    //Input 3
+    // Input 3
     "I 100",
     "O -",
     "F 3.2"
 };
-
+/*
+Creating outputs corresponding to the above inputs
+*/
 char *outputs[] = {
-    //Output1
+    // Output1
     "LOADINT 1\n",
     "LOADINT 2\n",
     "MUL \n",
     "LOADINT 3\n",
     "ADD \n",
 
-    //Output2
+    // Output2
     "LOADFLOAT 2.200000\n",
     "LOADINT 5\n",
     "ADD \n",
 
-    //Output3
+    // Output3
     "LOADINT 100\n",
     "LOADFLOAT 3.200000\n",
     "SUB \n",
@@ -94,7 +115,9 @@ void test_integration_infixtopostfix_codegenerator(){
     }
 }
 
-
+/*
+Running the above tests
+*/
 TESTS{
     test_integration_infixtopostfix_codegenerator();
 }

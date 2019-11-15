@@ -96,13 +96,22 @@ void test_write_item_to_file(){
     is_string(line, "R )\n", "Fourth Line Okay");
     fclose(file);
 }
-
+/*
+Testing the new character type 
+- Pointer
+- Type
+- Content
+*/
 void test_new_character_type(){
     CharacterType *char_type = newCharacterType();
     ok(char_type->pointer == 0, "CharacterType pointer initialized okay");
     ok(char_type->type == 1, "CharacterType type initialized okay");
     ok(strlen(char_type->content) == 0, "CharacterType content initialized okay");
 }
+
+/*
+Running the above tests
+*/
 
 TESTS {
     test_new_character_type();

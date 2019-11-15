@@ -60,6 +60,10 @@ char * _get_line(int test_num){
 
     return line;
 }
+/*
+Running the Tokenizer and InfixToPostfix converter
+and ensursing that the inputs/outputs are appropriate
+*/
 void test_integration_tokenizer_infixtopostfix(){
     char *line;
     char *item;
@@ -73,7 +77,9 @@ void test_integration_tokenizer_infixtopostfix(){
     }
 }
 
-
+/*
+Running the above tests
+*/
 TESTS{
     test_integration_tokenizer_infixtopostfix();
 }
