@@ -21,6 +21,9 @@ $(test_targets): test_%: %.o $(deps)
 unittest: $(test_targets)
 	$(CC) -o unittest_calculator Test_Suite/unittest_main.c
 
+test_system: $(objects)
+	$(CC) -o test_system.t $(objects) Test_Suite/test_system.c
+
 
 .PHONY: clean
 clean:
