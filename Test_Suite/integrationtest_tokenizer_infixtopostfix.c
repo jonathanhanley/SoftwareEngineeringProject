@@ -33,15 +33,15 @@ char *inputs[] = {
 Creating correct outputs for the sample inputs
 */
 char *outputs[] = {
-    "14.000000 52.000000 + ",
-    "12.500000 12.000000 5.000000 + * ",
-    "10.000000 10.000000 * 3.000000 + 2.000000 - ",
-    "1.000000 1.000000 * 12.000000 * 4.000000 1.000000 1.000000 + / - ",
-    "0.000000 0.000000 * 1.000000 + "
+    "14 52 + ",
+    "12.500000 12 5 + * ",
+    "10 10 * 3 + 2 - ",
+    "1 1 * 12 * 4 1 1 + / - ",
+    "0 0 * 1 + "
 };
 
 void _create_input(int test_num){
-    
+
     char *item = inputs[test_num];
     FILE * file;
     file = fopen("input.txt", "w");
