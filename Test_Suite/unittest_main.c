@@ -26,12 +26,10 @@ char *files[] = {
     "test_stack.t",
     "test_tokenizer.t",
     "test_virtualmachine.t"
-    "test_tokenizer_infixtopostfix.t"
-    "test_infixtopostfix_codegenerator.t"
 };
 
 /*
-Checking if the files exist and then executing them 
+Checking if the files exist and then executing them
 according to terminal commands
 */
 int main(){
