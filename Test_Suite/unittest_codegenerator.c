@@ -26,7 +26,7 @@ void testCodeGeneratorComponent() {
   createTextFile("postfixed.txt", "1 2 3 * + \n");
   printf(" ");
   startCodeGenerator();
-  compareTextInFile("codegenerated.txt", "LOADINT 1\nLOADINT 2\nLOADINT 3\nMUL \nADD \n");
+  ok(compareTextInFile("codegenerated.txt", "LOADINT 1\0\nLOADINT 2\0\nLOADINT 3\0\nMUL\0 \nADD\0 \n") == 1, "codegenerator component works correctly");
 
 }
 
@@ -50,7 +50,7 @@ void testClassifyChar () {
   ok(charType->type == 2, "Type updated to 2 - indicating a '*' symbol");
   classifyChar(charType,'.');
   ok(charType->type == 0, "Type updated to 0 - indicating float");
-  
+
 }
 
 /*
