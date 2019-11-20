@@ -33,7 +33,9 @@ test: $(test_targets) integration_test test_system
 
 .PHONY: clean check
 clean:
-	@rm -f unittest_calculator calculator *.o *.t $(LIST)
+	@rm -f test_calculator unittest_calculator calculator \
+		postfixed.txt tokenized.txt codegenerated.txt \
+		*.o *.t $(LIST)
 
 check: test
 	./test_calculator
