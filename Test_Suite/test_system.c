@@ -22,14 +22,14 @@ Include statements
 #include "tokenizer.h"
 #include "infixtopostfix.h"
 
+// #define TESTS int main()
+// #define ok(a, b, c) if (a) printf(b, c);
 
 /*
-Creating an index to keep track of the number of iterations 
+Creating an index to keep track of the number of iterations
 of the input and output
 Also keeping track of the number of tests
 */
-int input_index = 0;
-int output_index = 0;
 int num_tests = 7;
 
 /*
@@ -59,30 +59,11 @@ char *outputs[] = {
 };
 
 /*
-This function creates the input from above, and writes it to 
+This function creates the input from above, and writes it to
 input.txt simulating the calculator input
 */
 void _create_input(int test_num){
-    char *item = inputs[test_num];
-    FILE * file;
-    file = fopen("input.txt", "w");
-    fprintf(file, "%s", item);
-    fclose(file);
-
-}
-/*
-This function accesses the input in the file with the output
-and allows us to check its value
-*/
-char * _get_line(int test_num){
-    FILE * post_fix_file;
-    char * line;
-    size_t length = 0;
-    ssize_t read;
-    post_fix_file = fopen("log.txt", "r");
-    read = getline(&line, &length, post_fix_file);
-
-    return line;
+    createTextFile("input.txt", inputs[test_num]);
 }
 
 /*
@@ -90,16 +71,7 @@ This function allows us to check the value in the output file
 and ensures that it is the correct result of the equation
 */
 void output_matches_input(int test_num){
-        FILE *fp;
-        char str[1000];
-        char* filename = "log.txt";
-        fp = fopen(filename, "r");
-        while (fgets(str, 1000, fp) != NULL){
-            is_string(str, outputs[output_index], "TEST %d", test_num);
-            output_index++;
-        }
-    fclose(fp);
-
+    ok(compareTextInFile("log.txt", outputs[test_num]) == 1, "TEST %d", test_num);
 }
 /*
 This is the main function, and iterates through the various test cases
@@ -109,20 +81,21 @@ and then compares the result to ensure its the correct result according
 to the input
 */
 void testSystemTest(){
-    char *line;
-    char *item;
-  for(int i = 0; i < num_tests; i++){
+    for(int i = 0; i < num_tests; i++){
         _create_input(i);
-        FILE *saved = stdout;
-        stdout = fopen("log.txt", "w");
         startTokenizer();
         startInfixToPostfix();
+        printf("Ran i2p\n");
         startCodeGenerator();
+        printf("Ran cg\n");
+        FILE *saved = stdout;
+        stdout = fopen("log.txt", "w");
         startVirtualMachine();
         fclose(stdout);
+        stdout = saved;
         output_matches_input(i);
         remove("log.txt");
-   }
+    }
 }
 
 /*
