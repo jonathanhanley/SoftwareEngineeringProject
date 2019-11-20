@@ -29,12 +29,12 @@
     
 ## Due Dates
 - [x] Design - Friday 11 October @ 23:59
-- [ ] Implementation - Friday 22 November @ 23:59
+- [x] Implementation - Friday 22 November @ 23:59
     
 ## Files
 - [x] README.me
 - [x] DesignDocumentationV1.pdf
-- [ ] DesignDocumentationV2.pdf 
+- [x] DesignDocumentationV2.pdf 
 ###### Sample I/O Files
 - [x] input.txt
 - [x] tokenized.txt
@@ -75,7 +75,6 @@ Integration Tests
 
 - [x] integrationtest_infixtopostfix_codegenerator.c
 - [x] integrationtest_tokenizer_infixtopostfix.c
-- [ ] integrationtest_codegenerator_virtualmachine.c
 
 System Test
 
