@@ -32,6 +32,7 @@ and return its pointer
 */
 CharacterType *newCharacterType(){
     CharacterType *charType = (CharacterType *)malloc(sizeof(CharacterType));
+    charType->pointer = 0;
     resetCharacterType(charType);
     return charType;
 }
@@ -75,6 +76,7 @@ void createTextFile(char *nameOfTextFile, char *content) {
   fpOut = fopen(nameOfTextFile, "w");
 
   fprintf(fpOut, "%s", content);
+  fflush(fpOut);
   fclose(fpOut);
 
 }
