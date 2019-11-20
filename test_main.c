@@ -36,8 +36,8 @@ Checking if the files exist and then executing them
 according to terminal commands
 */
 int main(){
-    char cmd[150] = "prove";
-    for (int i=0; i<sizeof(files)/sizeof(*files); i++){
+    char cmd[300] = "prove";
+    for (int i=0; i<sizeof(files)/sizeof(files[0]); i++){
         // Check if this file exists
         FILE *f;
         f = fopen(files[i], "r");
